@@ -1,3 +1,4 @@
 module tp2 {
-	exports data;
+    requires java.desktop;
+    exports data;
 }
