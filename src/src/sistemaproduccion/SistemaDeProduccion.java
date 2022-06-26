@@ -1,6 +1,8 @@
 package sistemaproduccion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -40,6 +42,7 @@ public class SistemaDeProduccion {
 	public SistemaDeProduccion() {
 		hechos = new ArrayList<Boolean>();
 		for(int i = 0; i<9 ; ++i) hechos.add(false);
+		atributos= new HashMap<String,String>();
 		preguntas = new ArrayList<String>();
 		preguntas.add("Temperatura");
 		preguntas.add("Localidad");
@@ -52,53 +55,65 @@ public class SistemaDeProduccion {
 	public List<String> ejecutar(List<Integer> claves) {
 		ArrayList<String> respuestas = new ArrayList<String>();
 		for(Integer clave : claves) {
-			if(clave<9) hechos.set(clave, true);
+			if(clave<6) hechos.set(clave, true);
 			else
 			switch(clave) {
 			case 6:
 				atributos.put("Temperatura", "Calido");
+				preguntas.remove("Temperatura");
 				break;
 			case 7:
 				atributos.put("Temperatura", "Frio");
+				preguntas.remove("Temperatura");
 				break;
 			case 8:
 				atributos.put("Geografia", "Urbano");
+				preguntas.remove("Geografia");
 				break;
 			case 9:
 				atributos.put("Geografia", "Rural");
+				preguntas.remove("Geografia");
 				break;
 			case 10:
 				atributos.put("Geografia", "Montana");
+				preguntas.remove("Geografia");
 				break;
 			case 11:
 				atributos.put("Geografia", "Bosque");
+				preguntas.remove("Geografia");
 				break;
 			case 12:
 				atributos.put("Geografia", "Playa");
+				preguntas.remove("Geografia");
 				break;
 			case 13:
 				atributos.put("Localidad", "Nacional");
+				preguntas.remove("Localidad");
 				break;
 			case 14:
 				atributos.put("Localidad", "Internacional");
+				preguntas.remove("Localidad");
 				break;
 			case 15:
 				atributos.put("Tipo", "Historico");
+				preguntas.remove("Tipo");
 				break;
 			case 16:
 				atributos.put("Tipo", "Atracciones");
+				preguntas.remove("Tipo");
 				break;
 			case 17:
 				atributos.put("Tipo", "Naturaleza");
+				preguntas.remove("Tipo");
 				break;
 			}
 		}
 		
 		if(hechos.get(0)) {
-			//Saludo es la mayor prioridad para seleccionar regla
 			respuestas.add("saludos");
 			//Aca falta hacer el log de por que seleccionamos la regla
 			hechos.set(0, false);
+			hechos.set(1, true);
 		}
 		
 		if(hechos.get(5)) {
@@ -128,7 +143,7 @@ public class SistemaDeProduccion {
 			int elegida = (int) (Math.random()*preguntas.size());
 			//Preguntar es la mayor prioridad para seleccionar regla
 			respuestas.add(preguntas.get(elegida));
-			respuestas.remove(elegida);
+			preguntas.remove(elegida);
 			//Aca falta hacer el log de por que seleccionamos la regla
 			if(preguntas.isEmpty()) {
 				hechos.set(1, false);
@@ -141,7 +156,7 @@ public class SistemaDeProduccion {
 			//Aca falta hacer el log de por que seleccionamos la regla
 			hechos.set(3, false);
 		}
-		
+		System.out.println(respuestas);
 		
 		return respuestas;
 	}
@@ -156,6 +171,7 @@ public class SistemaDeProduccion {
 		int i=0;
 		while(i<lugares.size() && lugares.get(i).matches(atributos)==maximo) {
 			resultados.add(lugares.get(i).toString());
+			++i;
 		}
 		
 		return resultados;

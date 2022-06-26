@@ -121,6 +121,7 @@ public class ChatBot extends JFrame{
                     // aca hay q aplicar algo de faia
                 }
                 catch (Exception e) {
+                	e.printStackTrace();
                     System.out.println("Exception thrown.");
                 }
 //                String response = respond(category);
