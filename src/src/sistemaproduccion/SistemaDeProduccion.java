@@ -96,19 +96,22 @@ public class SistemaDeProduccion {
 				break;
 			case 15:
 				atributos.put("Tipo", "Historico");
-				preguntas.remove("Tipo");
+				preguntas.remove("TipoAtracciones");
 				break;
 			case 16:
 				atributos.put("Tipo", "Atracciones");
-				preguntas.remove("Tipo");
+				preguntas.remove("TipoAtracciones");
 				break;
 			case 17:
 				atributos.put("Tipo", "Naturaleza");
-				preguntas.remove("Tipo");
+				preguntas.remove("TipoAtracciones");
 				break;
 			}
 		}
-		
+		if(preguntas.isEmpty()) {
+			hechos.set(2, true);
+			hechos.set(1, false);
+		}
 		if(hechos.get(0)) {
 			respuestas.add("saludos");
 			//Aca falta hacer el log de por que seleccionamos la regla
@@ -117,21 +120,18 @@ public class SistemaDeProduccion {
 		}
 		
 		if(hechos.get(5)) {
-			//Reiniciar es segunda mayor prioridad para seleccionar regla
 			respuestas.add("aviso de reinicio");
 			//Aca falta hacer el log de por que seleccionamos la regla
 			hechos.set(5, false);
 		}
 		
 		if(hechos.get(4)) {
-			//Clarificacion es tercera mayor prioridad para seleccionar regla
 			respuestas.add("clarificacion");
 			//Aca falta hacer el log de por que seleccionamos la regla
 			hechos.set(4, false);
 		}
 		
 		if(hechos.get(2)) {
-			//Recomendar es cuarta mayor prioridad para seleccionar regla
 			respuestas.add("recomendar");
 			respuestas.addAll(this.recomendacion());
 			//Aca falta hacer el log de por que seleccionamos la regla
@@ -140,15 +140,19 @@ public class SistemaDeProduccion {
 		}
 		
 		if(hechos.get(1)) {
-			int elegida = (int) (Math.random()*preguntas.size());
-			//Preguntar es la mayor prioridad para seleccionar regla
-			respuestas.add(preguntas.get(elegida));
-			preguntas.remove(elegida);
-			//Aca falta hacer el log de por que seleccionamos la regla
+			
 			if(preguntas.isEmpty()) {
 				hechos.set(1, false);
 				hechos.set(2, true);
 			}
+			else {
+				int elegida = (int) (Math.random()*preguntas.size());
+				respuestas.add(preguntas.get(elegida));
+				preguntas.remove(elegida);
+				//Aca falta hacer el log de por que seleccionamos la regla
+			}
+			
+			
 		}
 		if(hechos.get(3)) {
 			//Despedir es quinta mayor prioridad para seleccionar regla
