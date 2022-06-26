@@ -72,9 +72,18 @@ public class ChatBot extends JFrame{
         if(respuestas == null || respuestas.isEmpty()) return "No ingresaste nada";
         String response = "";
         Boolean firstLine = true;
-        for(String r : respuestas){
-            if(!firstLine) response += "           ";
-            response+=respond(r);
+        for(int i=0; i<respuestas.size(); i++){
+            if(!firstLine) response += "\n           ";
+            response+=respond(respuestas.get(i));
+            if(respuestas.get(i) == "Recomendar") {
+                Boolean nxt=false;
+                while(respuestas.get(i+1) != "Despedida"){
+                    if(nxt) response+=", ";
+                    response += respuestas.get(i+1);
+                    i++;
+                    nxt=true;
+                }
+            }
             firstLine=false;
         }
         return response;
@@ -165,7 +174,7 @@ public class ChatBot extends JFrame{
                 {"Que tal", "como andamos?", "que tal pascual"}, // saludos
                 {"Aviso de reinicio"}, // reinicio
                 {"Clarificacion"}, // clarificacion
-                {"Te recomiendo... "}, // recomendar
+                {"Te recomiendo "}, // recomendar
                 {"Prefiere un clima frio o calido?"}, // temperatura
                 {"Que tipo de localidad prefiere? "}, // localidad
                 {"Que tipo de geografia le gustaria? "}, // geografia
@@ -175,7 +184,7 @@ public class ChatBot extends JFrame{
         
         for(int i = 0; i<categorias.length; i++){
             if(category == categorias[i]) {
-                return respuestas[i][(int)(Math.random()*respuestas[i].length)] + '\n';
+                return respuestas[i][(int)(Math.random()*respuestas[i].length)];
             }
         }
     
