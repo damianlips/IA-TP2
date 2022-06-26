@@ -15,6 +15,8 @@ import java.lang.Thread;
 
 
 import java.lang.Math;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChatBot extends JFrame{
 
@@ -27,6 +29,39 @@ public class ChatBot extends JFrame{
     public static void main(String[] args){
         new ChatBot();
     }
+
+    List<String> hechos = List.of(new String[]{
+            "SALUDAR",
+            "PREGUNTAR",
+            "RECOMENDAR",
+            "DESPEDIR",
+            "CLARIFICACION",
+            "REINICIAR",
+            "CALIDO",
+            "FRIO",
+            "URBANO",
+            "RURAL",
+            "MONTAÑA",
+            "BOSQUE",
+            "PLAYA",
+            "NACIONAL",
+            "INTERACIONAL",
+            "HISTORICO",
+            "ATRACCIONES",
+            "NATURALEZA"
+    });
+
+    
+    
+    private ArrayList<Integer> buscarHechos(String gtext) {
+        ArrayList<Integer> ret = new ArrayList<Integer>();
+        gtext = gtext.toUpperCase();
+        System.out.println(gtext);
+        for(int i=0; i<hechos.size(); i++){
+            if(gtext.contains(hechos.get(i))) ret.add(i);
+        }
+        return ret;
+    };
 
     public ChatBot(){
         frame = new JFrame("ChatBot de IA");
@@ -63,6 +98,15 @@ public class ChatBot extends JFrame{
                 String category = "";
                 try {
                     if(gtext.equals("hola")) category = "saludos";
+                    else {
+                        ArrayList<Integer> hechosActual = buscarHechos(gtext);
+                        if(!hechosActual.isEmpty()){
+                            System.out.print("hechos: ");
+                            for(Integer ha : hechosActual) System.out.print(ha + ", ");
+                            System.out.println();
+                        }
+                        else System.out.println( " Empty ");
+                    }
                     // aca hay q aplicar algo de faia
                 }
                 catch (Exception e) {
@@ -72,6 +116,8 @@ public class ChatBot extends JFrame{
                 if(gtext.charAt(0) == 'd') response = "obvio";
                 bot(response);
             }
+
+          
         });
 
 
