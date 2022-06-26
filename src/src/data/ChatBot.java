@@ -1,5 +1,7 @@
 package data;
 
+import sistemaproduccion.SistemaDeProduccion;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -19,12 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatBot extends JFrame{
-
+    
     private JFrame frame;
     private JTextArea chatArea;
     private JTextField chatBox;
     private JScrollPane scroll;
     private Border border;
+    
+    private SistemaDeProduccion sistemaDeProduccion = new SistemaDeProduccion();
 
     public static void main(String[] args){
         new ChatBot();
@@ -63,6 +67,14 @@ public class ChatBot extends JFrame{
         return ret;
     };
 
+
+    private String mergeRespuestas(List<String> respuestas) {
+        if(respuestas == null || respuestas.isEmpty()) return "No ingresaste nada";
+        String response = "";
+        for(String r : respuestas) response+=r;
+        return response;
+    };
+
     public ChatBot(){
         frame = new JFrame("ChatBot de IA");
         chatArea = new JTextArea(20,50);
@@ -96,28 +108,29 @@ public class ChatBot extends JFrame{
                     System.exit(0);
                 }
                 String category = "";
+                List<String> respuestas = null;
                 try {
                     if(gtext.equals("hola")) category = "saludos";
                     else {
                         ArrayList<Integer> hechosActual = buscarHechos(gtext);
-                        if(!hechosActual.isEmpty()){
-                            System.out.print("hechos: ");
-                            for(Integer ha : hechosActual) System.out.print(ha + ", ");
-                            System.out.println();
-                        }
-                        else System.out.println( " Empty ");
+                        System.out.print("hechos: ");
+                        for(Integer ha : hechosActual) System.out.print(ha + ", ");
+                        System.out.println();
+                        respuestas = sistemaDeProduccion.ejecutar(hechosActual);
                     }
                     // aca hay q aplicar algo de faia
                 }
                 catch (Exception e) {
                     System.out.println("Exception thrown.");
                 }
-                String response = respond(category);
-                if(gtext.charAt(0) == 'd') response = "obvio";
+//                String response = respond(category);
+//                if(gtext.charAt(0) == 'd') response = "obvio";
+                String response = mergeRespuestas(respuestas);
                 bot(response);
             }
 
-          
+
+
         });
 
 
