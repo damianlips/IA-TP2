@@ -123,6 +123,7 @@ public class SistemaDeProduccion {
 			respuestas.add("Aviso de reinicio");
 			//Aca falta hacer el log de por que seleccionamos la regla
 			hechos.set(5, false);
+			reiniciar();
 		}
 		
 		if(hechos.get(4)) {
@@ -180,6 +181,17 @@ public class SistemaDeProduccion {
 		
 		return resultados;
 	}
-	
+	private void reiniciar(){
+		hechos = new ArrayList<Boolean>();
+		for(int i = 0; i<9 ; ++i) hechos.add(false);
+		atributos= new HashMap<String,String>();
+		preguntas = new ArrayList<String>();
+		preguntas.add("Temperatura");
+		preguntas.add("Localidad");
+		preguntas.add("Geografia");
+		preguntas.add("TipoAtracciones");
+
+		hechos.set(0, true);
+	}
 
 }
