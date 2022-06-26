@@ -24,11 +24,11 @@ public class Lugar {
         int i=0;
         if(atrib.get("Temperatura")!=null&&atrib.get("Temperatura").equals(atributos.get("Temperatura")))
             i++;
-        if(atrib.get("Geografia")!=null&&atrib.get("Geografia").equals(atributos.get("Temperatura")))
+        if(atrib.get("Geografia")!=null&&atrib.get("Geografia").equals(atributos.get("Geografia")))
             i++;
         if(atrib.get("Localidad")!=null&&atrib.get("Localidad").equals(atributos.get("Localidad")))
             i++;
-        if(atrib.get("Tipo")!=null&&atrib.get("Tipo").equals(atributos.get("Temperatura")))
+        if(atrib.get("Tipo")!=null&&atrib.get("Tipo").equals(atributos.get("Tipo")))
             i++;
         return i;
     }
@@ -43,11 +43,11 @@ public class Lugar {
             return false;
         return true;
     }
-    public List<Lugar> listaLugares(){
+    public static List<Lugar> listaLugares(){
         List<Lugar> lugares= new ArrayList<>();
         Lugar lugar= new Lugar("Bariloche");
         lugar.agregarAtributo("Temperatura","Frio");
-        lugar.agregarAtributo("Geografia", "Montañoso");
+        lugar.agregarAtributo("Geografia", "Montana");
         lugar.agregarAtributo("Localidad", "Nacional");
         lugar.agregarAtributo("Tipo", "Natural");
         lugar.setPrecio(10000);
@@ -68,18 +68,22 @@ public class Lugar {
         lugares.add(lugar);
         lugar= new Lugar("Cordoba");
         lugar.agregarAtributo("Temperatura","Templado");
-        lugar.agregarAtributo("Geografia", "Montañoso");
+        lugar.agregarAtributo("Geografia", "Montana");
         lugar.agregarAtributo("Localidad", "Nacional");
         lugar.agregarAtributo("Tipo", "Natural");
         lugar.setPrecio(5000);
         lugares.add(lugar);
         lugar= new Lugar("Disney");
         lugar.agregarAtributo("Temperatura","Templado");
-        lugar.agregarAtributo("Geografia", "Montañoso");
+        lugar.agregarAtributo("Geografia", "Montana");
         lugar.agregarAtributo("Localidad", "Nacional");
         lugar.agregarAtributo("Tipo", "Atracciones");
         lugar.setPrecio(25000);
         lugares.add(lugar);
         return lugares;
     }
+	@Override
+	public String toString() {
+		return nombre;
+	}
 }
