@@ -113,26 +113,26 @@ public class SistemaDeProduccion {
 			hechos.set(1, false);
 		}
 		if(hechos.get(0)) {
-			respuestas.add("saludos");
+			respuestas.add("Saludos");
 			//Aca falta hacer el log de por que seleccionamos la regla
 			hechos.set(0, false);
 			hechos.set(1, true);
 		}
 		
 		if(hechos.get(5)) {
-			respuestas.add("aviso de reinicio");
+			respuestas.add("Aviso de reinicio");
 			//Aca falta hacer el log de por que seleccionamos la regla
 			hechos.set(5, false);
 		}
 		
 		if(hechos.get(4)) {
-			respuestas.add("clarificacion");
+			respuestas.add("Clarificacion");
 			//Aca falta hacer el log de por que seleccionamos la regla
 			hechos.set(4, false);
 		}
 		
 		if(hechos.get(2)) {
-			respuestas.add("recomendar");
+			respuestas.add("Recomendar");
 			respuestas.addAll(this.recomendacion());
 			//Aca falta hacer el log de por que seleccionamos la regla
 			hechos.set(2, false);
@@ -156,7 +156,7 @@ public class SistemaDeProduccion {
 		}
 		if(hechos.get(3)) {
 			//Despedir es quinta mayor prioridad para seleccionar regla
-			respuestas.add("despedida");
+			respuestas.add("Despedida");
 			//Aca falta hacer el log de por que seleccionamos la regla
 			hechos.set(3, false);
 		}

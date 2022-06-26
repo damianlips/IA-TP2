@@ -49,7 +49,7 @@ public class ChatBot extends JFrame{
             "BOSQUE",
             "PLAYA",
             "NACIONAL",
-            "INTERACIONAL",
+            "INTERNACIONAL",
             "HISTORICO",
             "ATRACCIONES",
             "NATURALEZA"
@@ -71,7 +71,12 @@ public class ChatBot extends JFrame{
     private String mergeRespuestas(List<String> respuestas) {
         if(respuestas == null || respuestas.isEmpty()) return "No ingresaste nada";
         String response = "";
-        for(String r : respuestas) response+=r;
+        Boolean firstLine = true;
+        for(String r : respuestas){
+            if(!firstLine) response += "           ";
+            response+=respond(r);
+            firstLine=false;
+        }
         return response;
     };
 
@@ -107,17 +112,13 @@ public class ChatBot extends JFrame{
                     sleep(500);
                     System.exit(0);
                 }
-                String category = "";
                 List<String> respuestas = null;
                 try {
-                    if(gtext.equals("hola")) category = "saludos";
-                    else {
-                        ArrayList<Integer> hechosActual = buscarHechos(gtext);
-                        System.out.print("hechos: ");
-                        for(Integer ha : hechosActual) System.out.print(ha + ", ");
-                        System.out.println();
-                        respuestas = sistemaDeProduccion.ejecutar(hechosActual);
-                    }
+                    ArrayList<Integer> hechosActual = buscarHechos(gtext);
+                    System.out.print("hechos: ");
+                    for(Integer ha : hechosActual) System.out.print(ha + ", ");
+                    System.out.println();
+                    respuestas = sistemaDeProduccion.ejecutar(hechosActual);
                     // aca hay q aplicar algo de faia
                 }
                 catch (Exception e) {
@@ -153,9 +154,34 @@ public class ChatBot extends JFrame{
 
     private String respond(String category)
     {
-        String[] saludos = {"Que tal", "como andamos?", "que tal pascual"};
-        if (category.equals("saludos")) return saludos[(int) (Math.random()*saludos.length)];
-        else return "Sorry";
+        //Saludos, Aviso de reinicio, Clarificacion,
+        // Recomendar, Temperatura, Localidad, Geografia, TipoAtracciones, Despedida
+        String[] categorias = {
+                "Saludos", "Aviso de reinicio", "Clarificacion",
+                "Recomendar", "Temperatura", "Localidad",
+                "Geografia", "TipoAtracciones", "Despedida"
+        };
+        String[][] respuestas = {
+                {"Que tal", "como andamos?", "que tal pascual"}, // saludos
+                {"Aviso de reinicio"}, // reinicio
+                {"Clarificacion"}, // clarificacion
+                {"Te recomiendo... "}, // recomendar
+                {"Prefiere un clima frio o calido?"}, // temperatura
+                {"Que tipo de localidad prefiere? "}, // localidad
+                {"Que tipo de geografia le gustaria? "}, // geografia
+                {"Busca alguna atraccion en particular maestro?"}, // atracciones
+                {"Nos vemos", "Hasta luego", "Vuelva pronto"} // despedida
+        };
+        
+        for(int i = 0; i<categorias.length; i++){
+            if(category == categorias[i]) {
+                return respuestas[i][(int)(Math.random()*respuestas[i].length)] + '\n';
+            }
+        }
+    
+        return "Y... es un tema complicado...\n";
+//        if (category.equals("Saludos")) return saludos[(int) (Math.random()*saludos.length)];
+
     }
 
 }
