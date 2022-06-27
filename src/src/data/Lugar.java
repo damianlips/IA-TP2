@@ -51,7 +51,7 @@ public class Lugar {
         lugar.agregarAtributo("Temperatura","Frio");
         lugar.agregarAtributo("Geografia", "Montana");
         lugar.agregarAtributo("Localidad", "Nacional");
-        lugar.agregarAtributo("Tipo", "Natural");
+        lugar.agregarAtributo("Tipo", "Naturaleza");
         lugar.setPrecio(10000);
         lugares.add(lugar);
         lugar= new Lugar("Paris");
@@ -65,14 +65,14 @@ public class Lugar {
         lugar.agregarAtributo("Temperatura","Calido");
         lugar.agregarAtributo("Geografia", "Playa");
         lugar.agregarAtributo("Localidad", "Internacional");
-        lugar.agregarAtributo("Tipo", "Natural");
+        lugar.agregarAtributo("Tipo", "Naturaleza");
         lugar.setPrecio(15000);
         lugares.add(lugar);
         lugar= new Lugar("Cordoba");
         lugar.agregarAtributo("Temperatura","Templado");
         lugar.agregarAtributo("Geografia", "Montana");
         lugar.agregarAtributo("Localidad", "Nacional");
-        lugar.agregarAtributo("Tipo", "Natural");
+        lugar.agregarAtributo("Tipo", "Naturaleza");
         lugar.setPrecio(5000);
         lugares.add(lugar);
         lugar= new Lugar("Disney");
