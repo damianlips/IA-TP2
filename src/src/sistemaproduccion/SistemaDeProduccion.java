@@ -56,6 +56,12 @@ public class SistemaDeProduccion {
 	
 	public List<String> ejecutar(List<Integer> claves) {
 		ArrayList<String> respuestas = new ArrayList<String>();
+		if(hechos.get(0)) {
+			System.out.println("Se selecciono la regla saludar por el criterio de prioridad");
+			respuestas.add("Saludos");
+			hechos.set(0, false);
+			hechos.set(1, true);
+		}
 		for(Integer clave : claves) {
 			if(clave<6) hechos.set(clave, true);
 			else
@@ -63,54 +69,80 @@ public class SistemaDeProduccion {
 			case 6:
 				atributos.put("Temperatura", "Calido");
 				preguntas.remove("Temperatura");
+				respuestas.add("Entendi");
+				respuestas.add("Calido");
 				break;
 			case 7:
 				atributos.put("Temperatura", "Frio");
 				preguntas.remove("Temperatura");
+				respuestas.add("Entendi");
+				respuestas.add("Frio");
 				break;
 			case 8:
 				atributos.put("Geografia", "Urbano");
 				preguntas.remove("Geografia");
+				respuestas.add("Entendi");
+				respuestas.add("Urbano");
 				break;
 			case 9:
 				atributos.put("Geografia", "Rural");
 				preguntas.remove("Geografia");
+				respuestas.add("Entendi");
+				respuestas.add("Rural");
 				break;
 			case 10:
 				atributos.put("Geografia", "Montana");
 				preguntas.remove("Geografia");
+				respuestas.add("Entendi");
+				respuestas.add("Montana");
 				break;
 			case 11:
 				atributos.put("Geografia", "Bosque");
 				preguntas.remove("Geografia");
+				respuestas.add("Entendi");
+				respuestas.add("Bosque");
 				break;
 			case 12:
 				atributos.put("Geografia", "Playa");
 				preguntas.remove("Geografia");
+				respuestas.add("Entendi");
+				respuestas.add("Playa");
 				break;
 			case 13:
 				atributos.put("Localidad", "Nacional");
 				preguntas.remove("Localidad");
+				respuestas.add("Entendi");
+				respuestas.add("Nacional");
 				break;
 			case 14:
 				atributos.put("Localidad", "Internacional");
 				preguntas.remove("Localidad");
+				respuestas.add("Entendi");
+				respuestas.add("Internacional");
 				break;
 			case 15:
 				atributos.put("Tipo", "Historico");
 				preguntas.remove("TipoAtracciones");
+				respuestas.add("Entendi");
+				respuestas.add("Historico");
 				break;
 			case 16:
 				atributos.put("Tipo", "Atracciones");
 				preguntas.remove("TipoAtracciones");
+				respuestas.add("Entendi");
+				respuestas.add("Atracciones");
 				break;
 			case 17:
 				atributos.put("Tipo", "Naturaleza");
 				preguntas.remove("TipoAtracciones");
+				respuestas.add("Entendi");
+				respuestas.add("Naturaleza");
 				break;
 			case 18:
 				atributos.put("Temperatura", "Templado");
 				preguntas.remove("Temperatura");
+				respuestas.add("Entendi");
+				respuestas.add("Templado");
 				break;
 			}
 		}
@@ -118,12 +150,7 @@ public class SistemaDeProduccion {
 			hechos.set(2, true);
 			hechos.set(1, false);
 		}
-		if(hechos.get(0)) {
-			System.out.println("Se selecciono la regla saludar por el criterio de prioridad");
-			respuestas.add("Saludos");
-			hechos.set(0, false);
-			hechos.set(1, true);
-		}
+		
 		
 		if(hechos.get(5)) {
 			System.out.println("Se selecciono la regla reinicio por el criterio de prioridad");
