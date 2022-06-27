@@ -46,7 +46,7 @@ public class ChatBot extends JFrame{
             {"FRESCO", "FRIO", "BAJA TEMPERATURA", "GLACIAL", "NIEVE", "NIEVA"}, // frio
             {"URBANO", "CIUDAD"}, // urbano
             {"RURAL", "ALEJADO", "RUSTICO", "CAMPO"}, // rural
-            {"MONTAÑOSO", "MONTAÑA", "ESCALAR"}, // 10 montaña
+            {"monta" + '\u00f1' + "oso", "MONTAÑOSO", "MONTAÑA", "ESCALAR"}, // 10 montaña
             {"BOSCOSO", "BOSQUE", "SELVA", "ARBOLEDA" }, // bosque
             {"CON PLAYA", "PLAYA", "SURF"}, // playa
             {"NACIONAL", "ARGENTINA"}, // nacional
