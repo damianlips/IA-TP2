@@ -50,7 +50,7 @@ public class ChatBot extends JFrame{
             {"BOSCOSO", "BOSQUE", "SELVA", "ARBOLEDA" }, // bosque
             {"CON PLAYA", "PLAYA", "SURF"}, // playa
             {"NACIONAL", "ARGENTINA"}, // nacional
-            {"INTERNACIONAL"}, // internacional
+            {"INTERNACIONAL", "EXTERIOR", "AFUERA"}, // internacional
             {"HISTORICO", "MUSEO", "MONUMENTO", "ANTIGUO"}, // 15 historico
             {"CON ATRACCIONES", "ATRACCIONES", "MONTAÑA RUSA", "ENTRETENIMIENTO", "CINE", "SHOPPING", "CASINO", "DIVERSION", "SAUNA"}, // atracciones
             {"NATURAL", "PARQUE", "PLAZA", "LAGO", "RESERVA"}, // naturaleza
