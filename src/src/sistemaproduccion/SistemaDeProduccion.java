@@ -37,6 +37,7 @@ public class SistemaDeProduccion {
 	 * 15: Historico
 	 * 16: Atracciones
 	 * 17: Naturaleza
+	 * 18: Templado
 	 */
 	
 	public SistemaDeProduccion() {
@@ -105,6 +106,10 @@ public class SistemaDeProduccion {
 			case 17:
 				atributos.put("Tipo", "Naturaleza");
 				preguntas.remove("TipoAtracciones");
+				break;
+			case 18:
+				atributos.put("Temperatura", "Templado");
+				preguntas.remove("Temperatura");
 				break;
 			}
 		}
