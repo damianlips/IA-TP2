@@ -176,15 +176,15 @@ public class ChatBot extends JFrame{
                 "Geografia", "TipoAtracciones", "Despedida"
         };
         String[][] respuestas = {
-                {"Que tal", "como andamos?", "que tal pascual"}, // saludos
-                {"Aviso de reinicio"}, // reinicio
-                {"Clarificacion"}, // clarificacion
-                {"Te recomiendo "}, // recomendar
-                {"Prefiere un clima frio o calido?"}, // temperatura
-                {"Que tipo de localidad prefiere? "}, // localidad
-                {"Que tipo de geografia le gustaria? "}, // geografia
-                {"Busca alguna atraccion en particular maestro?"}, // atracciones
-                {"Nos vemos", "Hasta luego", "Vuelva pronto"} // despedida
+                {"Buen dia. ", "Hola que tal. ", "Buenos dias. "}, // saludos
+                {"Se han reiniciado las preferencias. "}, // reinicio
+                {"Disculpe, no entendi bien lo que quizo decir. ", "Perdone, no pude entender lo que quizo decir. "}, // clarificacion
+                {"Le recomendaria la localidad de ", "Le sugiero programar un viaje a "}, // recomendar
+                {"Prefiere un clima frio o calido?", "Le gustaria viajar a un lugar nevado o que preferiria? "}, // temperatura
+                {"Le gustaria una localidad cercana o algun lugar internacional? ", "Preferiria un viaje al exterior o nacional? "}, // localidad
+                {"Que paisajes prefiere, algun lugar con montañas? ", "Le gustaria algun lugar con playas o que preferiria? "}, // geografia
+                {"Que actividades preferiria realizar, visitar algun lugar historico? ", "Le gustaria algun lugar en la naturaleza o que le gustaria hacer en su viaje? "}, // atracciones
+                {"Que tenga un buen resto del dia. ", "Ojala haya encontrado lo que buscaba, saludos. ", "Espero haberlo ayudado, saludos. "} // despedida
         };
         
         String respuestaElegida = "Y... es un tema complicado...\n";
