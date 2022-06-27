@@ -52,82 +52,97 @@ public class Lugar {
         lugar.agregarAtributo("Geografia", "Montana");
         lugar.agregarAtributo("Localidad", "Nacional");
         lugar.agregarAtributo("Tipo", "Naturaleza");
-        lugar.setPrecio(10000);
+        lugar.setPrecio(200000);
         lugares.add(lugar);
         lugar= new Lugar("Paris");
         lugar.agregarAtributo("Temperatura","Templado");
         lugar.agregarAtributo("Geografia", "Urbano");
         lugar.agregarAtributo("Localidad", "Internacional");
         lugar.agregarAtributo("Tipo", "Historico");
-        lugar.setPrecio(20000);
+        lugar.setPrecio(700000);
         lugares.add(lugar);
         lugar= new Lugar("Rio de janeiro");
         lugar.agregarAtributo("Temperatura","Calido");
         lugar.agregarAtributo("Geografia", "Playa");
         lugar.agregarAtributo("Localidad", "Internacional");
         lugar.agregarAtributo("Tipo", "Naturaleza");
-        lugar.setPrecio(15000);
+        lugar.setPrecio(350000);
         lugares.add(lugar);
         lugar= new Lugar("Cordoba");
         lugar.agregarAtributo("Temperatura","Templado");
         lugar.agregarAtributo("Geografia", "Montana");
         lugar.agregarAtributo("Localidad", "Nacional");
         lugar.agregarAtributo("Tipo", "Naturaleza");
-        lugar.setPrecio(5000);
+        lugar.setPrecio(170000);
         lugares.add(lugar);
         lugar= new Lugar("Disney");
         lugar.agregarAtributo("Temperatura","Templado");
         lugar.agregarAtributo("Geografia", "Urbano");
         lugar.agregarAtributo("Localidad", "Internacional");
         lugar.agregarAtributo("Tipo", "Atracciones");
-        lugar.setPrecio(25000);
+        lugar.setPrecio(800000);
         lugares.add(lugar);
         lugar= new Lugar("Cuba");
         lugar.agregarAtributo("Temperatura","Calido");
         lugar.agregarAtributo("Geografia", "Playa");
         lugar.agregarAtributo("Localidad", "Internacional");
         lugar.agregarAtributo("Tipo", "Naturaleza");
-        lugar.setPrecio(15000);
+        lugar.setPrecio(200000);
         lugares.add(lugar);
         lugar= new Lugar("Cataratas del iguazú");
         lugar.agregarAtributo("Temperatura","Calido");
         lugar.agregarAtributo("Geografia", "Rural");
         lugar.agregarAtributo("Localidad", "Nacional");
         lugar.agregarAtributo("Tipo", "Naturaleza");
-        lugar.setPrecio(25000);
+        lugar.setPrecio(200000);
         lugares.add(lugar);
         lugar= new Lugar("Estambul");
         lugar.agregarAtributo("Temperatura","Templado");
         lugar.agregarAtributo("Geografia", "Urbano");
         lugar.agregarAtributo("Localidad", "Interacional");
         lugar.agregarAtributo("Tipo", "Atracciones");
-        lugar.setPrecio(25000);
+        lugar.setPrecio(400000);
         lugares.add(lugar);
         lugar= new Lugar("Salta");
         lugar.agregarAtributo("Temperatura","Calido");
         lugar.agregarAtributo("Geografia", "Rural");
         lugar.agregarAtributo("Localidad", "Nacional");
         lugar.agregarAtributo("Tipo", "Naturaleza");
-        lugar.setPrecio(25000);
+        lugar.setPrecio(100000);
         lugares.add(lugar);
         lugar= new Lugar("Las Vegas");
         lugar.agregarAtributo("Temperatura","Calido");
         lugar.agregarAtributo("Geografia", "Urbano");
         lugar.agregarAtributo("Localidad", "Internacional");
         lugar.agregarAtributo("Tipo", "Atracciones");
-        lugar.setPrecio(25000);
+        lugar.setPrecio(800000);
         lugares.add(lugar);
         lugar= new Lugar("Mar de ajo");
         lugar.agregarAtributo("Temperatura","Calido");
         lugar.agregarAtributo("Geografia", "Playa");
         lugar.agregarAtributo("Localidad", "Nacional");
         lugar.agregarAtributo("Tipo", "Naturaleza");
-        lugar.setPrecio(15000);
+        lugar.setPrecio(220000);
         lugares.add(lugar);
         return lugares;
     }
 	@Override
 	public String toString() {
 		return nombre;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public Integer getPrecio() {
+		return precio;
+	}
+	public void setPrecio(Integer precio) {
+		this.precio = precio;
+	}
+	public void setAtributos(Map<String, String> atributos) {
+		this.atributos = atributos;
 	}
 }

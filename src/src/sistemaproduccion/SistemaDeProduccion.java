@@ -14,6 +14,7 @@ public class SistemaDeProduccion {
 	public List<Boolean> hechos;
 	public Map<String,String> atributos;
 	public List<String> preguntas;
+	private Boolean eligio;
 	
 	/*
 	 * Indice de hechos:
@@ -23,9 +24,6 @@ public class SistemaDeProduccion {
 	 * 3: Despedir
 	 * 4: Clarificacion
 	 * 5: Reiniciar
-	 * 
-	 * 
-	 * 
 	 * 6: Calido
 	 * 7: Frio
 	 * 8: Urbano
@@ -39,18 +37,30 @@ public class SistemaDeProduccion {
 	 * 16: Atracciones
 	 * 17: Naturaleza
 	 * 18: Templado
+	 * 19: Bariloche
+	 * 20: Paris
+	 * 21: Rio de janeiro
+	 * 22: Cordoba
+	 * 23: Disney
+	 * 24: Cuba 
+	 * 25: Cataratas del iguazu
+	 * 26: Estambul
+	 * 27: Salta 
+	 * 28: Las Vegas
+	 * 29: Mar de Ajo
+	 * 
 	 */
 	
 	public SistemaDeProduccion() {
 		hechos = new ArrayList<Boolean>();
-		for(int i = 0; i<9 ; ++i) hechos.add(false);
+		for(int i = 0; i<6 ; ++i) hechos.add(false);
 		atributos= new HashMap<String,String>();
 		preguntas = new ArrayList<String>();
 		preguntas.add("Temperatura");
 		preguntas.add("Localidad");
 		preguntas.add("Geografia");
 		preguntas.add("TipoAtracciones");
-		
+		eligio=false;
 		hechos.set(0, true);
 	}
 	
@@ -58,6 +68,24 @@ public class SistemaDeProduccion {
 		ArrayList<String> respuestas = new ArrayList<String>();
 		for(Integer clave : claves) {
 			if(clave<6) hechos.set(clave, true);
+			else if(clave>18) {
+				if(hechos.get(0)) {
+					System.out.println("Se selecciono la regla saludar por el criterio de prioridad");
+					respuestas.add("Saludos");
+					hechos.set(0, false);
+					hechos.set(1, true);
+				}
+				respuestas.add("Lugar elegido");
+				Lugar lugar =  Lugar.listaLugares().get(clave-19);
+				respuestas.add(lugar.getNombre());
+				respuestas.add(lugar.getAtributos().get("Temperatura"));
+				respuestas.add(lugar.getAtributos().get("Geografia"));
+				respuestas.add(lugar.getAtributos().get("Localidad"));
+				respuestas.add(lugar.getAtributos().get("Tipo"));
+				respuestas.add(lugar.getPrecio().toString());
+				eligio=true;
+				preguntas.clear();
+			}
 			else
 			switch(clave) {
 			case 6:
@@ -114,10 +142,15 @@ public class SistemaDeProduccion {
 				break;
 			}
 		}
+		
 		if(preguntas.isEmpty()) {
 			hechos.set(2, true);
 			hechos.set(1, false);
 		}
+		if(eligio) {
+			hechos.set(2, false);
+		}
+		
 		if(hechos.get(0)) {
 			System.out.println("Se selecciono la regla saludar por el criterio de prioridad");
 			respuestas.add("Saludos");
@@ -142,7 +175,7 @@ public class SistemaDeProduccion {
 			respuestas.add("Recomendar");
 			respuestas.addAll(this.recomendacion());
 			hechos.set(2, false);
-			hechos.set(3, true);
+			//hechos.set(3, true);
 		}
 		
 		if(hechos.get(1)) {
@@ -173,8 +206,8 @@ public class SistemaDeProduccion {
 		lugares = lugares.stream()
 				.sorted( (l1,l2) -> (l2.matches(atributos) - l1.matches(atributos) ))
 				.collect(Collectors.toList());
-		System.out.println(lugares);
-		lugares.stream().mapToInt(l -> l.matches(atributos)).forEach(i -> System.out.println(i));
+		//System.out.println(lugares);
+		//lugares.stream().mapToInt(l -> l.matches(atributos)).forEach(i -> System.out.println(i));
 		
 		int maximo =lugares.get(0).matches(atributos);
 		List<String> resultados = new ArrayList<String>();
@@ -195,7 +228,7 @@ public class SistemaDeProduccion {
 		preguntas.add("Localidad");
 		preguntas.add("Geografia");
 		preguntas.add("TipoAtracciones");
-
+		eligio = false;
 		hechos.set(0, true);
 	}
 

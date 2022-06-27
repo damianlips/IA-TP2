@@ -39,7 +39,7 @@ public class ChatBot extends JFrame{
             {"SALUDAR", "BUENOS DIAS", "BUENAS TARDES", "BUENAS NOCHES", "HOLA", "QUE TAL", "COMO ESTAS"}, // 0 saludar
             {"PREGUNTAR", }, // preguntar
             {"RECOMENDAR"}, // recomendar
-            {"DESPEDIR"}, // despedir
+            {"DESPEDIR","ADIOS", "GRACIAS", "NOS VEMOS"}, // despedir
             {"CLARIFICACION"}, // clarificacion
             {"REINICIAR"}, // 5 reiniciar
             {"CALIDO", "CALUROSO", "CALIENTE", "CALOR", "CARIBEÑO"}, // calido
@@ -54,7 +54,18 @@ public class ChatBot extends JFrame{
             {"HISTORICO", "MUSEO", "MONUMENTO", "ANTIGUO"}, // 15 historico
             {"CON ATRACCIONES", "ATRACCIONES", "MONTAÑA RUSA", "ENTRETENIMIENTO", "CINE", "SHOPPING", "CASINO", "DIVERSION", "SAUNA"}, // atracciones
             {"NATURAL", "PARQUE", "PLAZA", "LAGO", "RESERVA"}, // naturaleza
-            {"TEMPLADO"}
+            {"TEMPLADO"},
+            {"BARILOCHE"},
+            {"PARIS"},
+            {"RIO DE JANEIRO"},
+            {"CORDOBA"},
+            {"DISNEY"},
+            {"CUBA"},
+            {"CATARATAS DEL IGUAZU"},
+            {"ESTAMBUL"},
+            {"SALTA"},
+            {"LAS VEGAS"},
+            {"MAR DE AJO"}
     };
     
     
@@ -85,12 +96,35 @@ public class ChatBot extends JFrame{
             response+=respond(respuestas.get(i));
             if(respuestas.get(i) == "Recomendar") {
                 Boolean nxt=false;
-                while(respuestas.get(i+1) != "Despedida"){
+                while(i+1<respuestas.size() && respuestas.get(i+1) != "Despedida"){
                     if(nxt) response+=", ";
                     response += respuestas.get(i+1);
                     i++;
                     nxt=true;
                 }
+            }
+            if(respuestas.get(i)=="Lugar elegido") {
+            	++i;
+            	response+= respuestas.get(i);
+            	response+=".\n           ";
+            	++i;
+            	response+="En este lugar el clima es "+respuestas.get(i)+".\n           ";
+            	++i;
+            	response+="En cuanto a geografia, podriamos clasificarlo como "+respuestas.get(i)+".\n           ";
+            	++i;
+            	if(respuestas.get(i)=="Nacional")
+            	response+="Este destino es nacional, por lo tanto no hace falta sacar visa ni pasaporte.\n           ";
+            	else response+="Este destino es en el exterior, por lo que deberas tener el pasaporte al dia!.\n           ";
+            	++i;
+            	if(respuestas.get(i)=="Historico")
+            	response+="En este lugar podras ver varios sitios historicos.\n           ";
+            	else if (respuestas.get(i)=="Naturaleza")
+            		response+="En este lugar podras disfrutar de la naturaleza en todo su esplendor.\n           ";
+            	else response+="En este lugar podras visitar diversas atracciones turisticas.\n           ";
+            	++i;
+            	response+="Podemos ofrecerle paquetes turisticos hacia este destino por $"+respuestas.get(i)+".\n            Para mas informacion consultar nuestra web turismoalmundo.com .\n           ";
+            	++i;
+            	
             }
             firstLine=false;
         }
@@ -112,7 +146,7 @@ public class ChatBot extends JFrame{
         chatBox.setLocation(18, 18);
         chatBox.setBorder(border);
         frame.setResizable(false);
-        frame.setSize(600, 400);
+        frame.setSize(600, 600);
         frame.add(chatBox);
         frame.add(scroll);
         frame.setVisible(true);
@@ -139,7 +173,7 @@ public class ChatBot extends JFrame{
                     for(Integer ha : hechosActual) System.out.print(ha + ", ");
                     System.out.println();
                     for(Integer ha : hechosActual){
-                        if(ha > 5){
+                        if(ha > 5 && ha<19){
                             response += conectores[(int)(Math.random()*conectores.length)];
                             response += " un lugar " + hechos[ha][0].toLowerCase() + ".\n";
                             response+="           ";
@@ -183,7 +217,8 @@ public class ChatBot extends JFrame{
         String[] categorias = {
                 "Saludos", "Aviso de reinicio", "Clarificacion",
                 "Recomendar", "Temperatura", "Localidad",
-                "Geografia", "TipoAtracciones", "Despedida"
+                "Geografia", "TipoAtracciones", "Despedida", "Lugar elegido"//,"ContarTemperatura",
+                //"ContarGeografia","Localidad","Tipo"
         };
         String[][] respuestas = {
                 {"Buen dia. ", "Hola que tal. ", "Buenos dias. "}, // saludos
@@ -194,7 +229,8 @@ public class ChatBot extends JFrame{
                 {"Le gustaria una localidad cercana o algun lugar internacional? ", "Preferiria un viaje al exterior o nacional? "}, // localidad
                 {"Que paisajes prefiere, algun lugar con monta" + '\u00f1' + "as? ", "Le gustaria algun lugar con playas o que preferiria? "}, // geografia
                 {"Que actividades preferiria realizar, visitar algun lugar historico? ", "Le gustaria algun lugar en la naturaleza o que le gustaria hacer en su viaje? "}, // atracciones
-                {"Que tenga un buen resto del dia. ", "Ojala haya encontrado lo que buscaba, saludos. ", "Espero haberlo ayudado, saludos. "} // despedida
+                {"Que tenga un buen resto del dia. ", "Ojala haya encontrado lo que buscaba, saludos. ", "Espero haberlo ayudado, saludos. "}, // despedida
+                {"Ahh veo que te intereso ", "Buenisimo, te cuento sobre ", "Te gustaria saber mas sobre "}//Lugar elegido
         };
         
         String respuestaElegida = "Y... es un tema complicado...\n";
@@ -205,7 +241,7 @@ public class ChatBot extends JFrame{
             }
         }
     
-        System.out.println("Se eligio la siguiente respuesta: " + respuestaElegida);
+        System.out.println("Se eligio la siguiente respuesta: " + respuestaElegida + " siguiendo el criterio de aleatoriedad para que no se repitan siempre las mismas respuestas");
         return respuestaElegida;
 
     }
