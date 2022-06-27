@@ -34,36 +34,44 @@ public class ChatBot extends JFrame{
         new ChatBot();
     }
 
-    List<String> hechos = List.of(new String[]{
-            "SALUDAR",
-            "PREGUNTAR",
-            "RECOMENDAR",
-            "DESPEDIR",
-            "CLARIFICACION",
-            "REINICIAR",
-            "CALIDO",
-            "FRIO",
-            "URBANO",
-            "RURAL",
-            "MONTAÑA",
-            "BOSQUE",
-            "PLAYA",
-            "NACIONAL",
-            "INTERNACIONAL",
-            "HISTORICO",
-            "ATRACCIONES",
-            "NATURALEZA"
-    });
-
+    
+    String[][] hechos = {
+            {"SALUDAR", "BUENOS DIAS", "BUENAS TARDES", "BUENAS NOCHES", "HOLA", "QUE TAL", "COMO ESTAS"}, // 0 saludar
+            {"PREGUNTAR", }, // preguntar
+            {"RECOMENDAR"}, // recomendar
+            {"DESPEDIR"}, // despedir
+            {"CLARIFICACION"}, // clarificacion
+            {"REINICIAR"}, // 5 reiniciar
+            {"CALIDO", "CALUROSO", "CALIENTE", "CALOR", "CARIBEÑO"}, // calido
+            {"FRIO", "FRESCO", "BAJA TEMPERATURA", "GLACIAL", "NIEVE", "NIEVA"}, // frio
+            {"URBANO", "CIUDAD"}, // urbano
+            {"RURAL", "ALEJADO", "RUSTICO", "CAMPO"}, // rural
+            {"MONTAÑA", "MONTAÑOSO", "ESCALAR"}, // 10 montaña
+            {"BOSQUE", "SELVA", "ARBOLEDA", "BOSCOSO"}, // bosque
+            {"PLAYA", "SURF"}, // playa
+            {"NACIONAL", "ARGENTINA"}, // nacional
+            {"INTERNACIONAL"}, // internacional
+            {"HISTORICO", "MUSEO", "MONUMENTO", "ANTIGUO"}, // 15 historico
+            {"ATRACCIONES", "MONTAÑA RUSA", "ENTRETENIMIENTO", "CINE", "SHOPPING", "CASINO", "DIVERSION", "SAUNA"}, // atracciones
+            {"NATURALEZA", "PARQUE", "PLAZA", "LAGO", "RESERVA"}, // naturaleza
+            {"TEMPLADO"}
+    };
     
     
     private ArrayList<Integer> buscarHechos(String gtext) {
         ArrayList<Integer> ret = new ArrayList<Integer>();
         gtext = gtext.toUpperCase();
         System.out.println(gtext);
-        for(int i=0; i<hechos.size(); i++){
-            if(gtext.contains(hechos.get(i))) ret.add(i);
+        for(int i=0; i<hechos.length; i++){
+            for(String hecho : hechos[i]){
+                if(gtext.contains(hecho)){
+                    ret.add(i);
+                    break;
+                }
+            }
         }
+        Object nacional = 13;
+        if(ret.contains(14) && ret.contains(13)) ret.remove(nacional);
         return ret;
     };
 
@@ -128,14 +136,11 @@ public class ChatBot extends JFrame{
                     for(Integer ha : hechosActual) System.out.print(ha + ", ");
                     System.out.println();
                     respuestas = sistemaDeProduccion.ejecutar(hechosActual);
-                    // aca hay q aplicar algo de faia
                 }
                 catch (Exception e) {
                 	e.printStackTrace();
                     System.out.println("Exception thrown.");
                 }
-//                String response = respond(category);
-//                if(gtext.charAt(0) == 'd') response = "obvio";
                 String response = mergeRespuestas(respuestas);
                 bot(response);
             }
@@ -182,14 +187,16 @@ public class ChatBot extends JFrame{
                 {"Nos vemos", "Hasta luego", "Vuelva pronto"} // despedida
         };
         
+        String respuestaElegida = "Y... es un tema complicado...\n";
         for(int i = 0; i<categorias.length; i++){
             if(category == categorias[i]) {
-                return respuestas[i][(int)(Math.random()*respuestas[i].length)];
+                respuestaElegida = respuestas[i][(int)(Math.random()*respuestas[i].length)];
+                break;
             }
         }
     
-        return "Y... es un tema complicado...\n";
-//        if (category.equals("Saludos")) return saludos[(int) (Math.random()*saludos.length)];
+        System.out.println("Se eligio la siguiente respuesta: " + respuestaElegida);
+        return respuestaElegida;
 
     }
 
