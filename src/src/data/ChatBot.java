@@ -42,17 +42,17 @@ public class ChatBot extends JFrame{
             {"DESPEDIR","ADIOS", "GRACIAS", "NOS VEMOS"}, // despedir
             {"CLARIFICACION"}, // clarificacion
             {"REINICIAR"}, // 5 reiniciar
-            {"CALIDO", "CALUROSO", "CALIENTE", "CALOR", "CARIBEÑO"}, // calido
+            {"CALIDO", "CALUROSO", "CALIENTE", "CALOR", "CARIBEÑO", "CARIBENIO"}, // calido
             {"FRESCO", "FRIO", "BAJA TEMPERATURA", "GLACIAL", "NIEVE", "NIEVA"}, // frio
             {"URBANO", "CIUDAD"}, // urbano
             {"RURAL", "ALEJADO", "RUSTICO", "CAMPO"}, // rural
-            {"monta" + '\u00f1' + "oso", "MONTAÑOSO", "MONTAÑA", "ESCALAR"}, // 10 montaña
+            {"monta" + '\u00f1' + "oso", "MONTAÑOSO", "MONTAÑA", "MONTANIOSO", "MONTANIA", "ESCALAR"}, // 10 montaña
             {"BOSCOSO", "BOSQUE", "SELVA", "ARBOLEDA" }, // bosque
             {"CON PLAYA", "PLAYA", "SURF"}, // playa
             {"NACIONAL", "ARGENTINA"}, // nacional
             {"INTERNACIONAL", "EXTERIOR", "AFUERA"}, // internacional
             {"HISTORICO", "MUSEO", "MONUMENTO", "ANTIGUO"}, // 15 historico
-            {"CON ATRACCIONES", "ATRACCIONES", "MONTAÑA RUSA", "ENTRETENIMIENTO", "CINE", "SHOPPING", "CASINO", "DIVERSION", "SAUNA"}, // atracciones
+            {"CON ATRACCIONES", "ATRACCIONES", "MONTAÑA RUSA", "MONTANIA RUSA", "ENTRETENIMIENTO", "CINE", "SHOPPING", "CASINO", "DIVERSION", "SAUNA"}, // atracciones
             {"NATURAL", "PARQUE", "PLAZA", "LAGO", "RESERVA"}, // naturaleza
             {"TEMPLADO"},
             {"BARILOCHE"},
@@ -72,7 +72,6 @@ public class ChatBot extends JFrame{
     private ArrayList<Integer> buscarHechos(String gtext) {
         ArrayList<Integer> ret = new ArrayList<Integer>();
         gtext = gtext.toUpperCase();
-        System.out.println(gtext);
         for(int i=0; i<hechos.length; i++){
             for(String hecho : hechos[i]){
                 if(gtext.contains(hecho)){
