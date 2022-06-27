@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import data.Lugar;
@@ -169,9 +170,12 @@ public class SistemaDeProduccion {
 	
 	private List<String> recomendacion(){
 		List<Lugar> lugares = Lugar.listaLugares().stream().collect(Collectors.toList());
-		lugares.stream()
-				.sorted( (l1,l2) -> l2.matches(atributos) - l1.matches(atributos) )
+		lugares = lugares.stream()
+				.sorted( (l1,l2) -> (l2.matches(atributos) - l1.matches(atributos) ))
 				.collect(Collectors.toList());
+		System.out.println(lugares);
+		lugares.stream().mapToInt(l -> l.matches(atributos)).forEach(i -> System.out.println(i));
+		
 		int maximo =lugares.get(0).matches(atributos);
 		List<String> resultados = new ArrayList<String>();
 		int i=0;
