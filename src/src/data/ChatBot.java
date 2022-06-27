@@ -43,17 +43,17 @@ public class ChatBot extends JFrame{
             {"CLARIFICACION"}, // clarificacion
             {"REINICIAR"}, // 5 reiniciar
             {"CALIDO", "CALUROSO", "CALIENTE", "CALOR", "CARIBEÑO"}, // calido
-            {"FRIO", "FRESCO", "BAJA TEMPERATURA", "GLACIAL", "NIEVE", "NIEVA"}, // frio
+            {"FRESCO", "FRIO", "BAJA TEMPERATURA", "GLACIAL", "NIEVE", "NIEVA"}, // frio
             {"URBANO", "CIUDAD"}, // urbano
             {"RURAL", "ALEJADO", "RUSTICO", "CAMPO"}, // rural
-            {"MONTAÑA", "MONTAÑOSO", "ESCALAR"}, // 10 montaña
-            {"BOSQUE", "SELVA", "ARBOLEDA", "BOSCOSO"}, // bosque
-            {"PLAYA", "SURF"}, // playa
+            {"MONTAÑOSO", "MONTAÑA", "ESCALAR"}, // 10 montaña
+            {"BOSCOSO", "BOSQUE", "SELVA", "ARBOLEDA" }, // bosque
+            {"CON PLAYA", "PLAYA", "SURF"}, // playa
             {"NACIONAL", "ARGENTINA"}, // nacional
             {"INTERNACIONAL"}, // internacional
             {"HISTORICO", "MUSEO", "MONUMENTO", "ANTIGUO"}, // 15 historico
-            {"ATRACCIONES", "MONTAÑA RUSA", "ENTRETENIMIENTO", "CINE", "SHOPPING", "CASINO", "DIVERSION", "SAUNA"}, // atracciones
-            {"NATURALEZA", "PARQUE", "PLAZA", "LAGO", "RESERVA"}, // naturaleza
+            {"CON ATRACCIONES", "ATRACCIONES", "MONTAÑA RUSA", "ENTRETENIMIENTO", "CINE", "SHOPPING", "CASINO", "DIVERSION", "SAUNA"}, // atracciones
+            {"NATURAL", "PARQUE", "PLAZA", "LAGO", "RESERVA"}, // naturaleza
             {"TEMPLADO"}
     };
     
@@ -96,6 +96,8 @@ public class ChatBot extends JFrame{
         }
         return response;
     };
+    
+    String[] conectores = {"Genial, ", "Comprendo, ", "Perfecto, ", "Buena decision, ", "Excelente, "};
 
     public ChatBot(){
         frame = new JFrame("ChatBot de IA");
@@ -130,18 +132,26 @@ public class ChatBot extends JFrame{
                     System.exit(0);
                 }
                 List<String> respuestas = null;
+                String response = "";
                 try {
                     ArrayList<Integer> hechosActual = buscarHechos(gtext);
                     System.out.print("hechos: ");
                     for(Integer ha : hechosActual) System.out.print(ha + ", ");
                     System.out.println();
+                    for(Integer ha : hechosActual){
+                        if(ha > 5){
+                            response += conectores[(int)(Math.random()*conectores.length)];
+                            response += " un lugar " + hechos[ha][0].toLowerCase() + ".\n";
+                            response+="           ";
+                        }
+                    }
                     respuestas = sistemaDeProduccion.ejecutar(hechosActual);
                 }
                 catch (Exception e) {
                 	e.printStackTrace();
                     System.out.println("Exception thrown.");
                 }
-                String response = mergeRespuestas(respuestas);
+                response += mergeRespuestas(respuestas);
                 bot(response);
             }
 
@@ -178,11 +188,11 @@ public class ChatBot extends JFrame{
         String[][] respuestas = {
                 {"Buen dia. ", "Hola que tal. ", "Buenos dias. "}, // saludos
                 {"Se han reiniciado las preferencias. "}, // reinicio
-                {"Disculpe, no entendi bien lo que quizo decir. ", "Perdone, no pude entender lo que quizo decir. "}, // clarificacion
+                {"Disculpe, no entendi bien lo que quizo decir. ", "Perdone, no pude entender lo que quiso decir. "}, // clarificacion
                 {"Le recomendaria la localidad de ", "Le sugiero programar un viaje a "}, // recomendar
-                {"Prefiere un clima frio o calido?", "Le gustaria viajar a un lugar nevado o que preferiria? "}, // temperatura
+                {"Prefiere un clima frio, templado o calido?", "Le gustaria viajar a un lugar con nieve, templado o que haga calor?"}, // temperatura
                 {"Le gustaria una localidad cercana o algun lugar internacional? ", "Preferiria un viaje al exterior o nacional? "}, // localidad
-                {"Que paisajes prefiere, algun lugar con montañas? ", "Le gustaria algun lugar con playas o que preferiria? "}, // geografia
+                {"Que paisajes prefiere, algun lugar con monta" + '\u00f1' + "as? ", "Le gustaria algun lugar con playas o que preferiria? "}, // geografia
                 {"Que actividades preferiria realizar, visitar algun lugar historico? ", "Le gustaria algun lugar en la naturaleza o que le gustaria hacer en su viaje? "}, // atracciones
                 {"Que tenga un buen resto del dia. ", "Ojala haya encontrado lo que buscaba, saludos. ", "Espero haberlo ayudado, saludos. "} // despedida
         };
