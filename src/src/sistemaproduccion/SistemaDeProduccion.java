@@ -113,35 +113,34 @@ public class SistemaDeProduccion {
 			hechos.set(1, false);
 		}
 		if(hechos.get(0)) {
+			System.out.println("Se selecciono la regla saludar por el criterio de prioridad");
 			respuestas.add("Saludos");
-			//Aca falta hacer el log de por que seleccionamos la regla
 			hechos.set(0, false);
 			hechos.set(1, true);
 		}
 		
 		if(hechos.get(5)) {
+			System.out.println("Se selecciono la regla reinicio por el criterio de prioridad");
 			respuestas.add("Aviso de reinicio");
-			//Aca falta hacer el log de por que seleccionamos la regla
 			hechos.set(5, false);
 			reiniciar();
 		}
 		
 		if(hechos.get(4)) {
+			System.out.println("Se selecciono la regla clarificacion por el criterio de prioridad");
 			respuestas.add("Clarificacion");
-			//Aca falta hacer el log de por que seleccionamos la regla
 			hechos.set(4, false);
 		}
 		
 		if(hechos.get(2)) {
 			respuestas.add("Recomendar");
 			respuestas.addAll(this.recomendacion());
-			//Aca falta hacer el log de por que seleccionamos la regla
 			hechos.set(2, false);
 			hechos.set(3, true);
 		}
 		
 		if(hechos.get(1)) {
-			
+			System.out.println("Se selecciono la regla preguntar por el criterio de prioridad");
 			if(preguntas.isEmpty()) {
 				hechos.set(1, false);
 				hechos.set(2, true);
@@ -150,18 +149,15 @@ public class SistemaDeProduccion {
 				int elegida = (int) (Math.random()*preguntas.size());
 				respuestas.add(preguntas.get(elegida));
 				preguntas.remove(elegida);
-				//Aca falta hacer el log de por que seleccionamos la regla
 			}
 			
 			
 		}
 		if(hechos.get(3)) {
-			//Despedir es quinta mayor prioridad para seleccionar regla
+			System.out.println("Se selecciono la regla despedir al final por el criterio de prioridad");
 			respuestas.add("Despedida");
-			//Aca falta hacer el log de por que seleccionamos la regla
 			hechos.set(3, false);
 		}
-		System.out.println(respuestas);
 		
 		return respuestas;
 	}
@@ -178,7 +174,7 @@ public class SistemaDeProduccion {
 			resultados.add(lugares.get(i).toString());
 			++i;
 		}
-		
+		System.out.println("Se seleccionó la siguiente lista de resultados" + resultados + "siguiendo el criterio de especificidad");
 		return resultados;
 	}
 	private void reiniciar(){
